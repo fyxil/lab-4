@@ -2,13 +2,16 @@
 
 1. Создали Dockerfile со следующим содержимым:
 ```dockerfile
-FROM ubuntu
+FROM ubuntu:latest
 
-RUN apt-get update && \
-    apt-get install -y aalib-bin iputils-ping && \
-    rm -rf /var/lib/apt/lists/*
+ENV TERM=xterm
 
-CMD ["aafire"]
+RUN apt-get update && apt-get install -y \
+    libaa-bin \
+    iputils-ping \
+    && rm -rf /var/lib/apt/lists/*
+
+CMD ["aafire"] 
 ```
 
 2. Собрали docker-image:
